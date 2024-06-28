@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan3 Lý Tuyển Sinh</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <header role="banner">
+        <div id="cd-logo">
+          <a href="#">
+            <img src="https://nguyenvanhieu.vn/wp-content/uploads/2020/10/cd-logo.png" alt="Logo">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a class="cd-signin" href="#">Đăng nhập</a></li>
+            <li><a class="cd-signup" href="#">Đăng ký</a></li>
+          </ul>
+        </nav>
+    </header>
+    <div class="cd-user-modal">
+        <div class="cd-user-modal-container">
+            <ul class="cd-switcher">
+                <li><a href="#">Đăng nhập</a></li>
+                <li><a href="#">Tạo tài khoản</a></li>
+            </ul>
+            <div id="cd-login">
+                <form class="cd-form" id="login-form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signin-email">Email</label>
+                        <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail" required>
+                        <span class="cd-error-message">Email không được bỏ trống!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signin-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signin-password" type="password" placeholder="Password" required>
+                        <span class="cd-error-message">Password không được bỏ trống!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input type="checkbox" id="remember-me" checked>
+                        <label for="remember-me">Nhớ đăng nhập</label>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width" type="submit" value="Đăng nhập">
+                    </p>
+                </form>
+                <p class="cd-form-bottom-message"><a href="#">Quên mật khẩu?</a></p>
+            </div>
+            <div id="cd-signup">
+                <form class="cd-form" id="signup-form">
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-username">Username</label>
+                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username" required>
+                        <span class="cd-error-message">Username không được bỏ trống!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-email" for="signup-email">Email</label>
+                        <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail" required>
+                        <span class="cd-error-message">Email không được bỏ trống!</span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                        <input class="full-width has-padding has-border" id="signup-password" type="password" placeholder="Password" required>
+                        <span class="cd-error-message">Password không được bỏ trống!</span>
+                    </p>
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Tạo tài khoản">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-message" style="display: none;">
+        Hi, <span id="user-name"></span>!
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

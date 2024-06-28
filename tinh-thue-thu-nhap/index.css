@@ -1,0 +1,84 @@
+/* Basic styles for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-nav ul li {
+    margin: 0 10px;
+}
+
+.cd-user-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.cd-user-modal-container {
+    width: 300px;
+}
+
+.cd-switcher {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cd-switcher a {
+    cursor: pointer;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.cd-form {
+    display: none;
+}
+
+.cd-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.cd-form input[type="submit"] {
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 24px;
+}
