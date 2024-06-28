@@ -105,20 +105,20 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Chọn Tổ Hợp Môn Bạn Muốn Xét Tuyển</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="closeApp" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form action="" id="frm">
-              <span><input id="subjectCombinationA" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationA" type="radio" class="options" name="subjectCombination-app"
                   value="A00">A00</span>
-              <span><input id="subjectCombinationB" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationB" type="radio" class="options" name="subjectCombination-app"
                   value="B00">B00</span>
-              <span><input id="subjectCombinationC" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationC" type="radio" class="options" name="subjectCombination-app"
                   value="C00">C00</span>
-              <span><input id="subjectCombinationD" type="radio" class="options" name="subjectCombination"
-                  value="D01">D01</span>
+              <span><input id="subjectCombinationD" type="radio" class="options"
+                  value="D01" name="subjectCombination-app">D01</span>
               <p id="modal-tb"></p>
             </form>
           </div>
@@ -143,62 +143,62 @@
           <tr>
             <td>Họ và tên <span id="fullName-tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="fullName" name="fullName" required
+              <input type="text" class="form-control" id="fullNameApp" name="fullNameApp" required
                 placeholder="Họ Tên Phải là Chữ cái đầu viết hoa và có khoảng trắng!">
             </td>
           </tr>
           <tr>
-            <td id="point1"> <span id="point1-tb">*</span></td>
+            <td id="point1App"> <span id="point1tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores1" name="subjectScores" required
+              <input type="text" class="form-control" id="subjectScores1App" name="subjectScoresApp" required
                 placeholder="Phải nhập số lớn hơn 0 và bé hơn 10!">
             </td>
           </tr>
           <tr>
-            <td id="point2"> <span id="point2-tb">*</span></td>
+            <td id="point2App"> <span id="point2tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores2" name="subjectScores" required
+              <input type="text" class="form-control" id="subjectScores2App" name="subjectScoresApp" required
                 placeholder="Phải nhập số lớn hơn 0 và bé hơn 10!">
             </td>
           </tr>
           <tr>
-            <td id="point3"> <span id="point3-tb">*</span></td>
+            <td id="point3App"> <span id="point3tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores3" name="subjectScores" required
+              <input type="text" class="form-control" id="subjectScores3App" name="subjectScoresApp" required
                 placeholder="Phải nhập số lớn hơn 0 và bé hơn 10!">
             </td>
           </tr>
           <tr>
             <td>Khu vực ưu tiên <span id="priorityArea-tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="priorityArea" name="priorityArea" required maxlength="1"
+              <input type="text" class="form-control" id="priorityAreaApp" name="priorityAreaApp" required maxlength="1"
                 placeholder="Khu vực ưu tiên phải là A, B, C và X !">
             </td>
           </tr>
           <tr>
             <td>Đối tượng ưu tiên <span id="priorityGroup-tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="priorityGroup" name="priorityGroup" required maxlength="1"
+              <input type="text" class="form-control" id="priorityGroupApp" name="priorityGroupApp" required maxlength="1"
                 placeholder="Đối tượng ưu tiên phải là 0, 1, 2 và 3 !">
             </td>
           </tr>
           <tr>
             <td>Địa chỉ nhà <span id="homeAddress-tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="homeAddress" name="homeAddress" required>
+              <input type="text" class="form-control" id="homeAddressApp" name="homeAddressApp" required>
             </td>
           </tr>
           <tr>
             <td>Gmail <span id="email-tb">*</span></td>
             <td>
-              <input type="email" class="form-control" id="email" name="email" required
+              <input type="email" class="form-control" id="emailApp" name="emailApp" required
                 placeholder="vd: nguyenvana@gmail.com" autocomplete="email">
             </td>
           </tr>
           <tr>
             <td>Số điện thoại <span id="phoneNumber-tb">*</span></td>
             <td>
-              <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required
+              <input type="text" class="form-control" id="phoneNumberApp" name="phoneNumberApp" required
                 placeholder="Số điện thoại phải là 0 đầu và độ dài là 10 số">
             </td>
           </tr>
@@ -214,6 +214,12 @@
       </table>
     </form>
   </div>
+  <!-- 
+  
+    for(i=1; i < n; i++){
+
+    }
+  -->
   <!-- 
     gọi A là người
     gọi B là Thời Điểm
@@ -239,7 +245,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Mời Nhập Thông Tin Thí sinh</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="closeCheck" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -248,20 +254,20 @@
               <span>Email: <input type="text" id="checkEmailAdmissionApplicationForm"><br><br></span>
               <span>Phone: <input type="text" id="checkPhoneNumberAdmissionApplicationForm"><br><br></span>
 
-              <span><input id="subjectCombinationA" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationA" type="radio" class="options" name="subjectCombination-check"
                   value="A00">A00</span>
-              <span><input id="subjectCombinationB" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationB" type="radio" class="options" name="subjectCombination-check"
                   value="B00">B00</span>
-              <span><input id="subjectCombinationC" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationC" type="radio" class="options" name="subjectCombination-check"
                   value="C00">C00</span>
-              <span><input id="subjectCombinationD" type="radio" class="options" name="subjectCombination"
+              <span><input id="subjectCombinationD" type="radio" class="options" name="subjectCombination-check"
                   value="D01">D01</span>
               <p id="modal-tb-check"></p>
             </form>
           </div>
           <div class="modal-footer align-self-center">
-            <button type="button" class="btn btn-secondary" id="subjectCombinationFormCheck">Submit</button>
-            <button type="button" class="btn btn-secondary close" id="closeFormModal">Close</button>
+            <button type="button" class="btn btn-secondary" id="submitModalFormCheck">Submit</button>
+            <button type="button" class="btn btn-secondary close" id="closeFormModalCheck">Close</button>
           </div>
         </div>
       </div>
@@ -280,7 +286,7 @@
           <tr>
             <td>Ban Tuyển Sinh Của Bạn</td>
             <td>
-              <input type="text" class="form-control" id="admissionDepartment" name="admissionDepartment" required>
+              <input type="text" class="form-control" id="admissionDepartment-check" name="admissionDepartment" required>
             </td>
           </tr>
           <tr>
@@ -290,19 +296,19 @@
             </td>
           </tr>
           <tr>
-            <td id="point1-check"></td>
+            <td id="point1Check"></td>
             <td>
               <input type="text" class="form-control" id="subjectScores1-check" name="subjectScores-check" required>
             </td>
           </tr>
           <tr>
-            <td id="point2-check"></td>
+            <td id="point2Check"></td>
             <td>
               <input type="text" class="form-control" id="subjectScores2-check" name="subjectScores-check" required>
             </td>
           </tr>
           <tr>
-            <td id="point3-check"></td>
+            <td id="point3Check"></td>
             <td>
               <input type="text" class="form-control" id="subjectScores3-check" name="subjectScores-check" required>
             </td>

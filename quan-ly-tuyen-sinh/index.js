@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Nút button chọn nộp hồ sơ và kiểm tra kết quả
+  // Nút button chọn nộp hồ sơ
   const submitButton = document.getElementById('submitAdmissionApplication');
-  const checkButton = document.getElementById('checkAdmissionResults');
+
   // form modal chọn tổ hợp môn
   const formModal = document.getElementById('myModal');
   // Form Nộp hồ sơ
@@ -11,35 +11,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const subjectCombinationForm = document.getElementById("subjectCombinationForm");
   // Nút close modal chọn tổ hợp môn nộp hồ sơ
   const closeFormModal = document.getElementById("closeFormModal");
-  const closeModalButton = formModal.querySelector('.close');
+  const closeModalButton = formModal.querySelector('.closeApp');
   // Nút close form nộp hồ sơ
   const closeAppButtonForm = document.getElementById('closeAppForm');
 
-  // Lấy danh sách các fullName đã lưu từ Session Storage (nếu có)
-  let storedFullNames = JSON.parse(sessionStorage.getItem('submittedFullNames')) || [];
-  // Lấy danh sách điểm môn 1 đã lưu từ Session Storage (nếu có)
-  let storedSubjectScores1 = JSON.parse(sessionStorage.getItem('submittedSubjectScores1')) || [];
-  // Lấy danh sách điểm môn 2 đã lưu từ Session Storage (nếu có)
-  let storedSubjectScores2 = JSON.parse(sessionStorage.getItem('submittedSubjectScores2')) || [];
-  // Lấy danh sách điểm môn 3 đã lưu từ Session Storage (nếu có)
-  let storedSubjectScores3 = JSON.parse(sessionStorage.getItem('submittedSubjectScores3')) || [];
-  // Lấy danh sách điểm khu vực ưu tiên đã lưu từ Session Storage (nếu có)
-  let storedPriorityArea = JSON.parse(sessionStorage.getItem('submittedPriorityArea')) || [];
-  // Lấy danh sách điểm đối tượng ưu tiên đã lưu từ Session Storage (nếu có)
-  let storedPriorityGroup = JSON.parse(sessionStorage.getItem('submittedPriorityGroup')) || [];
-  // Lấy danh sách địa chỉ nhà đã lưu từ Session Storage (nếu có)
-  let storedHomeAddress = JSON.parse(sessionStorage.getItem('submittedHomeAddress')) || [];
-  // Lấy danh sách địa chỉ Email đã lưu từ Session Storage (nếu có)
-  let storedEmail = JSON.parse(sessionStorage.getItem('submittedEmail')) || [];
-  // Lấy danh sách số điện thoại đã lưu từ Session Storage (nếu có)
-  let storedPhoneNumber = JSON.parse(sessionStorage.getItem('submittedPhoneNumber')) || [];
+
 
   // Form nộp hồ sơ
   // Mở form modal để chọn tổ hợp môn
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     formModal.style.display = 'block';
-    formCheckAdmission.style.display = 'none';
+    // formCheckAdmission.style.display = 'none';
+    admissionApplicationForm.style.display = "none";
   });
 
   closeFormModal.addEventListener("click", () => {
@@ -61,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hàm kiểm tra đã chọn tổ hợp môn hay chưa
   subjectCombinationForm.addEventListener("click", (e) => {
     e.preventDefault();
-    selectedOption = document.querySelector('input[type="radio"]:checked');
+    selectedOption = document.querySelector('input[name="subjectCombination-app"]:checked');
 
     if (!selectedOption) {
       document.getElementById('modal-tb').innerText = "Vui lòng chọn tổ hợp môn.";
@@ -73,64 +57,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var selectFormApp = selectedOption.value;
       selectedOptionValue = selectFormApp;
-      var tbPoint1 = '<span id="point1-tb">*</span>';
-      var tbPoint2 = '<span id="point2-tb">*</span>';
-      var tbPoint3 = '<span id="point3-tb">*</span>';
+      var tbPoint1 = '<span id="point1tb">*</span>';
+      var tbPoint2 = '<span id="point2tb">*</span>';
+      var tbPoint3 = '<span id="point3tb">*</span>';
       switch (selectFormApp) {
         case "A00": {
-          document.getElementById("point1").innerHTML = "Điểm Môn Toán " + tbPoint1;
-          document.getElementById("point2").innerHTML = "Điểm Môn Vật Lý " + tbPoint2;
-          document.getElementById("point3").innerHTML = "Điểm Môn Hóa Học " + tbPoint3;
+          document.getElementById("point1App").innerHTML = "Điểm Môn Toán " + tbPoint1;
+          document.getElementById("point2App").innerHTML = "Điểm Môn Vật Lý " + tbPoint2;
+          document.getElementById("point3App").innerHTML = "Điểm Môn Hóa Học " + tbPoint3;
+          // Lưu tổ hợp môn
+          storedSelectedOption.push(selectedOptionValue);
+          sessionStorage.setItem("submittedSelectedOption", JSON.stringify(storedSelectedOption));
           break;
         }
         case "B00": {
-          document.getElementById("point1").innerHTML = "Điểm Môn Toán " + tbPoint1;
-          document.getElementById("point2").innerHTML = "Điểm Môn Sinh Học " + tbPoint2;
-          document.getElementById("point3").innerHTML = "Điểm Môn Hóa Học " + tbPoint3;
+          document.getElementById("point1App").innerHTML = "Điểm Môn Toán " + tbPoint1;
+          document.getElementById("point2App").innerHTML = "Điểm Môn Sinh Học " + tbPoint2;
+          document.getElementById("point3App").innerHTML = "Điểm Môn Hóa Học " + tbPoint3;
+          // Lưu tổ hợp môn
+          storedSelectedOption.push(selectedOptionValue);
+          sessionStorage.setItem("submittedSelectedOption", JSON.stringify(storedSelectedOption));
           break;
         }
         case "C00": {
-          document.getElementById("point1").innerHTML = "Điểm Môn Ngữ Văn " + tbPoint1;
-          document.getElementById("point2").innerHTML = "Điểm Môn Lịch Sử " + tbPoint2;
-          document.getElementById("point3").innerHTML = "Điểm Môn Địa Lý " + tbPoint3;
+          document.getElementById("point1App").innerHTML = "Điểm Môn Ngữ Văn " + tbPoint1;
+          document.getElementById("point2App").innerHTML = "Điểm Môn Lịch Sử " + tbPoint2;
+          document.getElementById("point3App").innerHTML = "Điểm Môn Địa Lý " + tbPoint3;
+          // Lưu tổ hợp môn
+          storedSelectedOption.push(selectedOptionValue);
+          sessionStorage.setItem("submittedSelectedOption", JSON.stringify(storedSelectedOption));
           break;
         }
         default: {
-          document.getElementById("point1").innerHTML = "Điểm Môn Ngữ Văn " + tbPoint1;
-          document.getElementById("point2").innerHTML = "Điểm Môn Toán Học " + tbPoint2;
-          document.getElementById("point3").innerHTML = "Điểm Môn Anh Văn " + tbPoint3;
+          document.getElementById("point1App").innerHTML = "Điểm Môn Ngữ Văn " + tbPoint1;
+          document.getElementById("point2App").innerHTML = "Điểm Môn Toán Học " + tbPoint2;
+          document.getElementById("point3App").innerHTML = "Điểm Môn Anh Văn " + tbPoint3;
+          // Lưu tổ hợp môn
+          storedSelectedOption.push(selectedOptionValue);
+          sessionStorage.setItem("submittedSelectedOption", JSON.stringify(storedSelectedOption));
           break;
         }
+
       }
     }
   });
 
   // Các biến người dùng nhập vào từ form nộp hồ sơ Full Name
-  const fullNameInput = document.getElementById("fullName");
+  const fullNameInput = document.getElementById("fullNameApp");
   const fullNameError = document.getElementById("fullName-tb");
   // Điểm môn 1
-  const subjectScores1Input = document.getElementById("subjectScores1");
-  const subjectScores1Error = document.getElementById("point1-tb");
+  const subjectScores1Input = document.getElementById("subjectScores1App");
+  const subjectScores1Error = document.getElementById("point1tb");
   // Điểm môn 2
-  const subjectScores2Input = document.getElementById("subjectScores2");
-  const subjectScores2Error = document.getElementById("point2-tb");
+  const subjectScores2Input = document.getElementById("subjectScores2App");
+  const subjectScores2Error = document.getElementById("point2tb");
   // Điểm môn 3
-  const subjectScores3Input = document.getElementById("subjectScores3");
-  const subjectScores3Error = document.getElementById("point3-tb");
+  const subjectScores3Input = document.getElementById("subjectScores3App");
+  const subjectScores3Error = document.getElementById("point3tb");
   // Điểm khu vực ưu tiên
-  const priorityAreaInput = document.getElementById("priorityArea");
+  const priorityAreaInput = document.getElementById("priorityAreaApp");
   const priorityAreaError = document.getElementById("priorityArea-tb");
   // Điểm đối tượng ưu tiên
-  const priorityGroupInput = document.getElementById("priorityGroup");
+  const priorityGroupInput = document.getElementById("priorityGroupApp");
   const priorityGroupError = document.getElementById("priorityGroup-tb");
   // Địa chỉ nhà
-  const homeAddressInput = document.getElementById("homeAddress");
+  const homeAddressInput = document.getElementById("homeAddressApp");
   const homeAddressError = document.getElementById("homeAddress-tb");
   // Địa chỉ Email
-  const emailInput = document.getElementById("email");
+  const emailInput = document.getElementById("emailApp");
   const emailError = document.getElementById("email-tb");
   // Số điện thoại
-  const phoneNumberInput = document.getElementById("phoneNumber");
+  const phoneNumberInput = document.getElementById("phoneNumberApp");
   const phoneNumberError = document.getElementById("phoneNumber-tb");
   // Giá trị Full Name
   const fullNameValue = fullNameInput.value.trim();
@@ -150,47 +147,51 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailValue = emailInput.value.trim();
   // Giá trị số điện thoại
   const phoneNumberValue = phoneNumberInput.value.trim();
+  let userId = 1;
+  const userData = JSON.parse(sessionStorage.getItem('usersData'));
   const formApplication = document.getElementById('submitApplication');
-  formApplication.addEventListener('click', () => {
+  let usersData = JSON.parse(sessionStorage.getItem('usersData')) || [];
+  formApplication.addEventListener('click', (e) => {
     e.preventDefault();
+    // Giá trị Full Name
+    const fullNameValue = fullNameInput.value.trim();
+    // Giá trị môn 1
+    const subjectScores1Value = parseFloat(subjectScores1Input.value.trim());
+    // Giá trị môn 2
+    const subjectScores2Value = parseFloat(subjectScores2Input.value.trim());
+    // Giá trị môn 3
+    const subjectScores3Value = parseFloat(subjectScores3Input.value.trim());
+    // Giá trị khu vực ưu tiên
+    const priorityAreaValue = priorityAreaInput.value.trim();
+    // Giá trị đối tượng ưu tiên
+    const priorityGroupValue = parseInt(priorityGroupInput.value.trim());
+    // Giá trị địa chỉ nhà
+    const homeAddressValue = homeAddressInput.value.trim();
+    // Giá trị địa chỉ email
+    const emailValue = emailInput.value.trim();
+    // Giá trị số điện thoại
+    const phoneNumberValue = phoneNumberInput.value.trim();
 
 
+    admissionApplicationForm.style.display = "none";
+    if (checkFullName(fullNameValue) && checkSubjectScores1(subjectScores1Value) && checkSubjectScores2(subjectScores2Value) && checkSubjectScores3(subjectScores3Value) && checkpriorityArea(priorityAreaValue) && checkpriorityGroup(priorityGroupValue) && checkEmail(emailValue) && checkPhoneNumber(phoneNumberValue) && checkAddress(homeAddressValue)) {
+      const userData = {
+        selectedOption: selectedOptionValue,
+        fullName: fullNameValue,
+        subjectScores1: subjectScores1Value,
+        subjectScores2: subjectScores2Value,
+        subjectScores3: subjectScores3Value,
+        priorityArea: priorityAreaValue,
+        priorityGroup: priorityGroupValue,
+        email: emailValue,
+        homeAddress: homeAddressValue,
+        phoneNumber: phoneNumberValue
+      };
 
-
-    if (checkFullName(fullNameValue) || checkSubjectScores1(subjectScores1Value) || checkSubjectScores2(subjectScores2Value) || checkSubjectScores3(subjectScores3Value) || checkpriorityArea(priorityAreaValue) || checkpriorityGroup(priorityGroupValue) || checkEmail(emailValue) || checkAddress(homeAddressValue) || checkPhoneNumber(phoneNumberValue)) {
-      admissionApplicationForm.style.display = "none";
-      // Lưu tổ hợp môn
-      storedSelectedOption.push(selectedOptionValue);
-      sessionStorage.setItem("submittedSelectedOption", JSON.stringify(storedSelectedOption));
-      // Lưu giá trị fullName vào mảng storedFullNames
-      storedFullNames.push(fullNameValue);
-      // Lưu lại mảng storedFullNames vào Session Storage
-      sessionStorage.setItem('submittedFullNames', JSON.stringify(storedFullNames));
-      // Lưu điểm môn 1
-      storedSubjectScores1.push(subjectScores1Value);
-      sessionStorage.setItem('submittedSubjectScores1', JSON.stringify(storedSubjectScores1));
-      // Lưu điểm môn 2
-      storedSubjectScores2.push(subjectScores2Value);
-      sessionStorage.setItem('submittedSubjectScores2', JSON.stringify(storedSubjectScores2));
-      // Lưu điểm môn 3
-      storedSubjectScores3.push(subjectScores3Value);
-      sessionStorage.setItem('submittedSubjectScores3', JSON.stringify(storedSubjectScores3));
-      // Lưu khu vực ưu tiên
-      storedPriorityArea.push(priorityAreaValue);
-      sessionStorage.setItem("submittedPriorityArea", JSON.stringify(storedPriorityArea));
-      // Lưu đối tượng ưu tiên
-      storedPriorityGroup.push(priorityGroupValue);
-      sessionStorage.setItem("submittedPriorityGroup", JSON.stringify(storedPriorityGroup));
-      // Lưu Email
-      storedEmail.push(emailValue);
-      sessionStorage.setItem("submittedEmail", JSON.stringify(storedEmail));
-      // Lưu Địa chỉ
-      storedHomeAddress.push(homeAddressValue);
-      sessionStorage.setItem("submittedHomeAddress", JSON.stringify(storedHomeAddress));
-      // Lưu Phone Number
-      storedPhoneNumber.push(phoneNumberValue);
-      sessionStorage.setItem("submittedPhoneNumber", JSON.stringify(storedPhoneNumber));
-      
+      usersData.push(userData);
+      sessionStorage.setItem('usersData', JSON.stringify(usersData));
+      userId++;
+      alert('Đã lưu thông tin thành công!');
     }
   });
   // Kiểm tra Full Name khi người dùng nhập liệu
@@ -244,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const subjectScores1Value = subjectScores1Input.value.trim();
 
     if (isNaN(subjectScores1Value) || !checkSubjectScores1(subjectScores1Value)) {
-      subjectScores1Error.innerHTML = "* Phải nhập số lớn hơn 0 và bé hơn 10!";
+      subjectScores1Error.innerText = "* Phải nhập số lớn hơn 0 và bé hơn 10!";
       subjectScores1Error.style.color = "red";
     }
   });
@@ -253,15 +254,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const subjectScores1Value = subjectScores1Input.value.trim();
     if (isNaN(subjectScores1Value) || !checkSubjectScores1(subjectScores1Value)) {
       subjectScores1Input.value = ""; // Làm mới giá trị
-      subjectScores1Error.innerHTML = " *"; // Xóa thông báo lỗi
+      subjectScores1Error.innerText = " *"; // Xóa thông báo lỗi
       subjectScores1Error.style.color = "black"
     }
-    
+
   });
   // Hàm kiểm tra điểm môn 1
   function checkSubjectScores1(subjectScores1Value) {
-    const score1 = /^(10|[0-9](\.[0-9]+)?)$/;
-    return score1.test(subjectScores1Value);
+    return !isNaN(subjectScores1Value) && subjectScores1Value >= 0 && subjectScores1Value <= 10;
   };
 
   // Kiểm tra điểm môn 2 khi người dùng nhập liệu
@@ -296,15 +296,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm kiểm tra điểm môn 2
   function checkSubjectScores2(subjectScores2Value) {
-    const score2 = /^(10|[0-9](\.[0-9]+)?)$/;
-    return score2.test(subjectScores2Value);
+    return !isNaN(subjectScores2Value) && subjectScores2Value >= 0 && subjectScores2Value <= 10;
   };
 
   // Kiểm tra điểm môn 3 khi người dùng nhập liệu
   subjectScores3Input.addEventListener('input', () => {
-    const subjectScores3Value = subjectScores3Input.value.trim();
+    const subjectScores3Value = subjectScores3Input.value.trim() * 1;
 
-    if (isNaN(subjectScores3Value) || !checkSubjectScores3(subjectScores3Value)) {
+    if (!checkSubjectScores3(subjectScores3Value)) {
       subjectScores3Error.innerHTML = "* Phải nhập số lớn hơn 0 và bé hơn 10!";
       subjectScores3Error.style.color = "red";
     } else {
@@ -313,17 +312,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   // Kiểm tra điểm môn 3 khi người dùng click ra khỏi ô nhập liệu
   subjectScores3Input.addEventListener('blur', () => {
-    const subjectScores3Value = subjectScores3Input.value.trim();
+    const subjectScores3Value = subjectScores3Input.value.trim() * 1;
 
-    if (isNaN(subjectScores3Value) || !checkSubjectScores3(subjectScores3Value)) {
+    if (!checkSubjectScores3(subjectScores3Value)) {
       subjectScores3Error.innerHTML = "* Phải nhập số lớn hơn 0 và bé hơn 10!";
       subjectScores3Error.style.color = "red";
     }
   });
   // Làm mới giá trị điểm môn 3 khi người dùng click vào ô nhập liệu
   subjectScores3Input.addEventListener('focus', () => {
-    const subjectScores3Value = subjectScores3Input.value.trim();
-    if (isNaN(subjectScores3Value) || !checkSubjectScores3(subjectScores3Value)) {
+    const subjectScores3Value = subjectScores3Input.value.trim() * 1;
+    if (!checkSubjectScores3(subjectScores3Value)) {
       subjectScores3Input.value = ""; // Làm mới giá trị
       subjectScores3Error.innerHTML = " *"; // Xóa thông báo lỗi
       subjectScores3Error.style.color = "black"
@@ -332,8 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hàm kiểm tra điểm môn 3
   function checkSubjectScores3(subjectScores3Value) {
-    const score3 = /^(10|[0-9](\.[0-9]+)?)$/;
-    return score3.test(subjectScores3Value);
+    return !isNaN(subjectScores3Value) && subjectScores3Value >= 0 && subjectScores3Value <= 10;
   };
 
 
@@ -380,19 +378,14 @@ document.addEventListener("DOMContentLoaded", function () {
     switch (priorityAreaValue) {
       case 'A':
         return 2;
-        break;
       case 'B':
         return 1;
-        break;
       case 'C':
         return 0.5;
-        break;
       case 'X':
         return 0;
-        break;
       default:
         return 0;
-        break;
     }
   }
   // Hàm kiểm tra  đối tưởng ưu tiên
@@ -437,21 +430,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hàm chuyển đổi đối tưởng ưu tiên thành điểm
   function convertPriorityGroupToScore(priorityGroupValue) {
     switch (priorityGroupValue) {
-      case '1':
+      case 1:
         return 2.5;
-        break;
-      case '2':
+      case 2:
         return 1.5;
-        break;
-      case '3':
+      case 3:
         return 1;
-        break;
-      case '0':
+      case 0:
         return 0;
-        break;
       default:
         return 0;
-        break;
     }
   }
 
@@ -566,13 +554,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+  // Nút mở modal check
+  const checkButton = document.getElementById('checkAdmissionResults');
+  checkButton.addEventListener("click", () => {
+    modalCheck.style.display = "block";
+  })
+
+  // Modal của Kiểm tra tuyển sinh
+  const modalCheck = document.getElementById("myModalCheck");
+  const submitModalCheck = document.getElementById("submitModalFormCheck");
+  submitModalCheck.addEventListener("click", () => {
+    const checkEmailInput = document.getElementById('checkEmailAdmissionApplicationForm').value;
+    const checkPhoneNumberInput = document.getElementById('checkPhoneNumberAdmissionApplicationForm').value;
+    const checkSubjectCombination = document.querySelector('input[name="subjectCombination-check"]:checked').value;
+    const usersData = JSON.parse(sessionStorage.getItem('usersData')) || [];
+    let foundUser = null;
+    modalCheck.style.display = "block";
+    admissionApplicationForm.style.display = "none";
+    var selectedOptionCheck = document.querySelector('input[name="subjectCombination-check"]:checked');
+
+    if (!selectedOptionCheck) {
+      document.getElementById('modal-tb').innerText = "Vui lòng chọn tổ hợp môn.";
+      document.getElementById('modal-tb').style.color = 'red';
+    } else {
+      var selectFormCheck = selectedOptionCheck.value;
+      switch (selectFormCheck) {
+        case "A00": {
+          document.getElementById("point1Check").innerHTML = "Điểm Môn Toán ";
+          document.getElementById("point2Check").innerHTML = "Điểm Môn Vật Lý ";
+          document.getElementById("point3Check").innerHTML = "Điểm Môn Hóa Học ";
+          break;
+        }
+        case "B00": {
+          document.getElementById("point1Check").innerHTML = "Điểm Môn Toán ";
+          document.getElementById("point2Check").innerHTML = "Điểm Môn Sinh Học ";
+          document.getElementById("point3Check").innerHTML = "Điểm Môn Hóa Học ";
+          break;
+        }
+        case "C00": {
+          document.getElementById("point1Check").innerHTML = "Điểm Môn Ngữ Văn ";
+          document.getElementById("point2Check").innerHTML = "Điểm Môn Lịch Sử ";
+          document.getElementById("point3Check").innerHTML = "Điểm Môn Địa Lý ";
+          break;
+        }
+        default: {
+          document.getElementById("point1Check").innerHTML = "Điểm Môn Ngữ Văn ";
+          document.getElementById("point2Check").innerHTML = "Điểm Môn Toán Học ";
+          document.getElementById("point3Check").innerHTML = "Điểm Môn Anh Văn ";
+          break;
+        }
+
+      }
+    }
+    for (let i = 0; i < usersData.length; i++) {
+      let userData = usersData[i];
+      if (userData.email === checkEmailInput && userData.phoneNumber === checkPhoneNumberInput && userData.selectedOption === checkSubjectCombination) {
+        foundUser = userData;
+        break;
+      }
+    }
+    if (foundUser) {
+      var priorityAreaScore = parseFloat(convertPriorityAreaToScore(foundUser.priorityArea));
+      var priorityGroupScore = convertPriorityGroupToScore(foundUser.priorityGroup);
+      var totalScores = parseFloat(foundUser.subjectScores1) + parseFloat(foundUser.subjectScores2) + parseFloat(foundUser.subjectScores3) + priorityAreaScore + priorityGroupScore;
 
 
-
+      document.getElementById('admissionDepartment-check').value = foundUser.selectedOption;
+      document.getElementById('fullName-check').value = foundUser.fullName;
+      document.getElementById('subjectScores1-check').value = foundUser.subjectScores1;
+      document.getElementById('subjectScores2-check').value = foundUser.subjectScores2;
+      document.getElementById('subjectScores3-check').value = foundUser.subjectScores3;
+      document.getElementById('subjectScores-check').value = totalScores;
+      document.getElementById('priorityArea-check').value = foundUser.priorityArea;
+      document.getElementById('priorityGroup-check').value = foundUser.priorityGroup;
+      document.getElementById('homeAddress-check').value = foundUser.homeAddress;
+      document.getElementById('email-check').value = foundUser.email;
+      document.getElementById('phoneNumber-check').value = foundUser.phoneNumber;
+      if(totalScores >= 27){
+        document.getElementById('result').value = "Bạn Đã Đậu";
+      }else{
+        document.getElementById('result').value = "Bạn Đã Trượt";
+      }
+      formCheckAdmission.style.display = "block";
+      modalCheck.style.display = "none";
+    }
+  });
   // Form kiểm tra
   const formCheckAdmission = document.getElementById("formContainercheckAdmission");
 
   // Nút close form kiểm tra
   const closeCheckButtonForm = document.getElementById("closeCheckForm");
-
+  closeCheckButtonForm.addEventListener("click", () => {
+    formCheckAdmission.style.display = "none";
+  });
+  const closeModalCheck = document.getElementById("closeFormModalCheck");
+  closeModalCheck.addEventListener("click", () => {
+    modalCheck.style.display = "none";
+  })
+  const closeModalButtonCheck = formModal.querySelector('.closeCheck');
+  closeModalButtonCheck.addEventListener('click', () => {
+    modalCheck.style.display = 'none';
+  });
 });
