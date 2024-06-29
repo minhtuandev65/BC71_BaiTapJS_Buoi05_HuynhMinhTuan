@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  // Form nộp hồ sơ
+  //////////////////////// Form Modal chọn tổ hợp môn ///////////////////////////////
+  // Input: Chọn 1 trong 4 radio A00, B00, C00, D01
+  // Process: Khi chọn tổ hợp môn bấm submit các tên môn point1App, point2App và point3App sẽ được cập nhật tên môn theo tổ hợp môn đã chọn
+  // Output: A00 sẽ hiện Toán Lý Hóa, B00 sẽ hiện Toán Hóa Sinh, C00 sẽ hiện Ngữ Văn Lịch Sử Địa lý, D01 sẽ hiện Toán Ngữ Văn Anh Văn
   // Mở form modal để chọn tổ hợp môn
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -101,6 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+  /////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////// Form Nộp Hồ Sơ Tuyển Sinh /////////////////////////////////
+  // Input: fullNameApp, subjectScores1App, subjectScores2App, subjectScores3App, priorityAreaApp, priorityGroupApp, homeAddressApp, emailApp, phoneNumberApp
+  // Process: các function kiểm tra đúng sai: checkFullName(fullNameValue), checkSubjectScores1(subjectScores1Value), checkSubjectScores2(subjectScores2Value), checkSubjectScores3(subjectScores3Value), checkpriorityArea(priorityAreaValue), checkpriorityGroup(priorityGroupValue), checkEmail(emailValue), checkAddress(homeAddressValue), checkPhoneNumber(phoneNumberValue)
+  // Output: Hiện các giá trị người dùng nhập vào ở Form Kiểm Tra Kết Quả Xét Tuyển bao gồm các thông tin fullNameApp, subjectScores1App, subjectScores2App, subjectScores3App, priorityAreaApp, priorityGroupApp, homeAddressApp, emailApp, phoneNumberApp
+
 
   // Các biến người dùng nhập vào từ form nộp hồ sơ Full Name
   const fullNameInput = document.getElementById("fullNameApp");
@@ -129,71 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Số điện thoại
   const phoneNumberInput = document.getElementById("phoneNumberApp");
   const phoneNumberError = document.getElementById("phoneNumber-tb");
-  // Giá trị Full Name
-  const fullNameValue = fullNameInput.value.trim();
-  // Giá trị môn 1
-  const subjectScores1Value = parseFloat(subjectScores1Input.value.trim());
-  // Giá trị môn 2
-  const subjectScores2Value = parseFloat(subjectScores2Input.value.trim());
-  // Giá trị môn 3
-  const subjectScores3Value = parseFloat(subjectScores3Input.value.trim());
-  // Giá trị khu vực ưu tiên
-  const priorityAreaValue = priorityAreaInput.value.trim();
-  // Giá trị đối tượng ưu tiên
-  const priorityGroupValue = parseInt(priorityGroupInput.value.trim());
-  // Giá trị địa chỉ nhà
-  const homeAddressValue = homeAddressInput.value.trim();
-  // Giá trị địa chỉ email
-  const emailValue = emailInput.value.trim();
-  // Giá trị số điện thoại
-  const phoneNumberValue = phoneNumberInput.value.trim();
-  let userId = 1;
-  const userData = JSON.parse(sessionStorage.getItem('usersData'));
-  const formApplication = document.getElementById('submitApplication');
-  let usersData = JSON.parse(sessionStorage.getItem('usersData')) || [];
-  formApplication.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Giá trị Full Name
-    const fullNameValue = fullNameInput.value.trim();
-    // Giá trị môn 1
-    const subjectScores1Value = parseFloat(subjectScores1Input.value.trim());
-    // Giá trị môn 2
-    const subjectScores2Value = parseFloat(subjectScores2Input.value.trim());
-    // Giá trị môn 3
-    const subjectScores3Value = parseFloat(subjectScores3Input.value.trim());
-    // Giá trị khu vực ưu tiên
-    const priorityAreaValue = priorityAreaInput.value.trim();
-    // Giá trị đối tượng ưu tiên
-    const priorityGroupValue = parseInt(priorityGroupInput.value.trim());
-    // Giá trị địa chỉ nhà
-    const homeAddressValue = homeAddressInput.value.trim();
-    // Giá trị địa chỉ email
-    const emailValue = emailInput.value.trim();
-    // Giá trị số điện thoại
-    const phoneNumberValue = phoneNumberInput.value.trim();
 
 
-    admissionApplicationForm.style.display = "none";
-    if (checkFullName(fullNameValue) && checkSubjectScores1(subjectScores1Value) && checkSubjectScores2(subjectScores2Value) && checkSubjectScores3(subjectScores3Value) && checkpriorityArea(priorityAreaValue) && checkpriorityGroup(priorityGroupValue) && checkEmail(emailValue) && checkPhoneNumber(phoneNumberValue) && checkAddress(homeAddressValue)) {
-      const userData = {
-        selectedOption: selectedOptionValue,
-        fullName: fullNameValue,
-        subjectScores1: subjectScores1Value,
-        subjectScores2: subjectScores2Value,
-        subjectScores3: subjectScores3Value,
-        priorityArea: priorityAreaValue,
-        priorityGroup: priorityGroupValue,
-        email: emailValue,
-        homeAddress: homeAddressValue,
-        phoneNumber: phoneNumberValue
-      };
 
-      usersData.push(userData);
-      sessionStorage.setItem('usersData', JSON.stringify(usersData));
-      userId++;
-      alert('Đã lưu thông tin thành công!');
-    }
-  });
+  ////////////////////// Hàm Kiểm Tra Nhập Họ Tên ////////////////////////////////////
   // Kiểm tra Full Name khi người dùng nhập liệu
   fullNameInput.addEventListener('input', () => {
     const fullNameValue = fullNameInput.value.trim();
@@ -229,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return fullNamePattern.test(fullNameValue);
   }
 
+  //////////////////////// Hàm Kiểm Tra Nhập Điểm Môn 1 //////////////////////////////
   // Kiểm tra điểm môn 1 khi người dùng nhập liệu
   subjectScores1Input.addEventListener('input', () => {
     const subjectScores1Value = subjectScores1Input.value.trim();
@@ -263,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkSubjectScores1(subjectScores1Value) {
     return !isNaN(subjectScores1Value) && subjectScores1Value >= 0 && subjectScores1Value <= 10;
   };
-
+  //////////////////////// Hàm Kiểm Tra Nhập Điểm Môn 2 //////////////////////////////
   // Kiểm tra điểm môn 2 khi người dùng nhập liệu
   subjectScores2Input.addEventListener('input', () => {
     const subjectScores2Value = subjectScores2Input.value.trim();
@@ -298,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function checkSubjectScores2(subjectScores2Value) {
     return !isNaN(subjectScores2Value) && subjectScores2Value >= 0 && subjectScores2Value <= 10;
   };
-
+  //////////////////////// Hàm Kiểm Tra Nhập Điểm Môn 3 //////////////////////////////
   // Kiểm tra điểm môn 3 khi người dùng nhập liệu
   subjectScores3Input.addEventListener('input', () => {
     const subjectScores3Value = subjectScores3Input.value.trim() * 1;
@@ -334,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return !isNaN(subjectScores3Value) && subjectScores3Value >= 0 && subjectScores3Value <= 10;
   };
 
-
+  ////////////////////// Hàm Kiểm Tra Nhập Khu Vực Ưu Tiên //////////////////////////////
   // Kiểm tra khu vực ưu tiên khi người dùng nhập liệu
   let priorityAreaScore = 0;
   priorityAreaInput.addEventListener('input', () => {
@@ -388,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return 0;
     }
   }
-  // Hàm kiểm tra  đối tưởng ưu tiên
+  ///////////////////// Hàm kiểm tra  đối tưởng ưu tiên //////////////////////////////
   // Kiểm tra đối tưởng ưu tiên khi người dùng nhập liệu
   let priorityGroupScore = 0;
   priorityGroupInput.addEventListener('input', () => {
@@ -442,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return 0;
     }
   }
-
+  //////////////////////////// Hàm Kiểm Tra Nhập Email //////////////////////////////////
   // Kiểm tra email khi người dùng nhập liệu
   emailInput.addEventListener('input', () => {
     const emailValue = emailInput.value.trim();
@@ -479,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 
-
+  ////////////////////// Hàm Kiểm Tra Nhập Địa Chỉ Nhà///////////////////////////////////
   // Kiểm tra địa chỉ nhà khi người dùng nhập liệu
   homeAddressInput.addEventListener('input', () => {
     const homeAddressValue = homeAddressInput.value.trim();
@@ -516,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-
+  //////////////////// Hàm Kiểm Tra Nhập Khu Số Điện Thoại //////////////////////////////
   // Kiểm tra số điện thoại khi người dùng nhập liệu
   phoneNumberInput.addEventListener('input', () => {
     const phoneNumberValue = phoneNumberInput.value.trim();
@@ -551,8 +500,63 @@ document.addEventListener("DOMContentLoaded", function () {
     const phonePattern = /^[0]{1}[0-9]{9}$/;
     return phonePattern.test(phoneNumberValue);
   }
+  ////////////// Kiểm Tra các hàm rồi lưu vào session storage /////////////////////////
+  // Input: fullNameValue, subjectScores1Value, subjectScores2Value, subjectScores3Value, priorityAreaValue, priorityGroupValue, homeAddressValue, emailValue, phoneNumberValue
+  // Process: Dùng lệnh if để kiểm tra xem các hàm đã đúng hay chưa nếu đúng sẽ bắt đầu lưu các giá trị người dùng nhập vào Session Storage: if (checkFullName(fullNameValue) && checkSubjectScores1(subjectScores1Value) && checkSubjectScores2(subjectScores2Value) && checkSubjectScores3(subjectScores3Value) && checkpriorityArea(priorityAreaValue) && checkpriorityGroup(priorityGroupValue) && checkEmail(emailValue) && checkPhoneNumber(phoneNumberValue) && checkAddress(homeAddressValue))
+  // Output: Lưu các giá trị vào Session Storage và hiện thông báo đã lưu thông tin thành công
+  let userId = 1;
+  const userData = JSON.parse(sessionStorage.getItem('usersData'));
+  const formApplication = document.getElementById('submitApplication');
+  let usersData = JSON.parse(sessionStorage.getItem('usersData')) || [];
+  formApplication.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Giá trị Full Name
+    const fullNameValue = fullNameInput.value.trim();
+    // Giá trị môn 1
+    const subjectScores1Value = parseFloat(subjectScores1Input.value.trim());
+    // Giá trị môn 2
+    const subjectScores2Value = parseFloat(subjectScores2Input.value.trim());
+    // Giá trị môn 3
+    const subjectScores3Value = parseFloat(subjectScores3Input.value.trim());
+    // Giá trị khu vực ưu tiên
+    const priorityAreaValue = priorityAreaInput.value.trim();
+    // Giá trị đối tượng ưu tiên
+    const priorityGroupValue = parseInt(priorityGroupInput.value.trim());
+    // Giá trị địa chỉ nhà
+    const homeAddressValue = homeAddressInput.value.trim();
+    // Giá trị địa chỉ email
+    const emailValue = emailInput.value.trim();
+    // Giá trị số điện thoại
+    const phoneNumberValue = phoneNumberInput.value.trim();
 
 
+    admissionApplicationForm.style.display = "none";
+    if (checkFullName(fullNameValue) && checkSubjectScores1(subjectScores1Value) && checkSubjectScores2(subjectScores2Value) && checkSubjectScores3(subjectScores3Value) && checkpriorityArea(priorityAreaValue) && checkpriorityGroup(priorityGroupValue) && checkEmail(emailValue) && checkPhoneNumber(phoneNumberValue) && checkAddress(homeAddressValue)) {
+      const userData = {
+        selectedOption: selectedOptionValue,
+        fullName: fullNameValue,
+        subjectScores1: subjectScores1Value,
+        subjectScores2: subjectScores2Value,
+        subjectScores3: subjectScores3Value,
+        priorityArea: priorityAreaValue,
+        priorityGroup: priorityGroupValue,
+        email: emailValue,
+        homeAddress: homeAddressValue,
+        phoneNumber: phoneNumberValue
+      };
+
+      usersData.push(userData);
+      sessionStorage.setItem('usersData', JSON.stringify(usersData));
+      userId++;
+      alert('Đã lưu thông tin thành công!');
+    }
+  });
+
+
+  /////////////////////////// Form Kiểm Tra Kết Quả Tuyển Sinh /////////////////////////
+  // Input: checkEmailInput, checkSubjectCombination, checkPhoneNumberInput
+  // Process: Nhập Email, Sổ Điện Thoại, chọn tổ hợp môn, nếu các giá trị Email, Số Điện Thoại, Tổ Hợp Môn trùng khớp với dữ liệu đã lưu trong Session Storage Thì sẽ đi đến form kết quả tuyển sinh để xem các thông tin đã nhập trước đó và coi tổng điểm và kết quả đâu hay trượt của thí sinh; thuật toán tính tổng: totalScores = parseFloat(foundUser.subjectScores1) + parseFloat(foundUser.subjectScores2) + parseFloat(foundUser.subjectScores3) + priorityAreaScore + priorityGroupScore;, Thuật Toán kết quả tuyển sinh: sử dụng lệnh if else, nếu tổng điểm bằng hoặc hơn 27 thì Đậu, Dưới 27 thì thông báo Trượt
+  // Ouput: Hiện các giá trị người dùng nhập vào ở Form Kiểm Tra Kết Quả Xét Tuyển bao gồm các thông tin fullNameApp, subjectScores1App, subjectScores2App, subjectScores3App, priorityAreaApp, priorityGroupApp, homeAddressApp, emailApp, phoneNumberApp, totalScores, result
 
   // Nút mở modal check
   const checkButton = document.getElementById('checkAdmissionResults');
@@ -630,13 +634,15 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('homeAddress-check').value = foundUser.homeAddress;
       document.getElementById('email-check').value = foundUser.email;
       document.getElementById('phoneNumber-check').value = foundUser.phoneNumber;
-      if(totalScores >= 27){
-        document.getElementById('result').value = "Bạn Đã Đậu";
-      }else{
-        document.getElementById('result').value = "Bạn Đã Trượt";
+      if (totalScores >= 27) {
+        document.getElementById('result').value = "Chúc Mừng Thí Sinh Đã Đậu Vào Trường ĐH Công Nghiệp TP.HCM";
+      } else {
+        document.getElementById('result').value = "Chúng tôi rất tiếc vì bạn đã trượt ";
       }
       formCheckAdmission.style.display = "block";
       modalCheck.style.display = "none";
+    }else{
+      alert('Email, số điện thoại hoặc tổ hợp môn bạn chọn đã sai !')
     }
   });
   // Form kiểm tra

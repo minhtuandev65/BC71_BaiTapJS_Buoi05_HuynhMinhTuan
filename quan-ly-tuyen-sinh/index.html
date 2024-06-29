@@ -65,7 +65,7 @@
   </div>
   <!-- 
       Note: khi chọn button kiểm tra kết quả tuyển sinh sẽ hiện modal bắt người dùng nhập vào email, phoneNumber và tổ hợp môn đã nộp hồ sơ trước đó
-      => khi nhấn submit hàm check thông tin đã lưu sẽ kiểm tra xem có email, phoneNumber và tổ hợp môn đã chọn đúng hay chưa
+      => khi nhấn submit check thông tin đã lưu và kiểm tra xem có email, phoneNumber và tổ hợp môn đã chọn có giống với các thông tin đã lưu hay chưa
         => nếu chưa thì hiện thông báo lỗi
         => nếu rồi thì hiện form có các giá trị người dùng đã nhập trước đó và tính điểm tổng môn = môn 1 + môn 2 + môn 3 + điểm khu vực + điểm đối tượng.
         
@@ -286,80 +286,79 @@
           <tr>
             <td>Ban Tuyển Sinh Của Bạn</td>
             <td>
-              <input type="text" class="form-control" id="admissionDepartment-check" name="admissionDepartment" required>
+              <input type="text" class="form-control" id="admissionDepartment-check" name="admissionDepartment" required disabled>
             </td>
           </tr>
           <tr>
             <td>Họ và tên</td>
             <td>
-              <input type="text" class="form-control" id="fullName-check" name="fullName-check" required>
+              <input type="text" class="form-control" id="fullName-check" name="fullName-check" required disabled>
             </td>
           </tr>
           <tr>
             <td id="point1Check"></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores1-check" name="subjectScores-check" required>
+              <input type="text" class="form-control" id="subjectScores1-check" name="subjectScores-check" required disabled>
             </td>
           </tr>
           <tr>
             <td id="point2Check"></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores2-check" name="subjectScores-check" required>
+              <input type="text" class="form-control" id="subjectScores2-check" name="subjectScores-check" required disabled>
             </td>
           </tr>
           <tr>
             <td id="point3Check"></td>
             <td>
-              <input type="text" class="form-control" id="subjectScores3-check" name="subjectScores-check" required>
+              <input type="text" class="form-control" id="subjectScores3-check" name="subjectScores-check" required disabled>
             </td>
           </tr>
 
           <tr>
             <td>Tổng Điểm Các Môn</td>
             <td>
-              <input type="text" class="form-control" id="subjectScores-check" name="subjectScores-check" required>
+              <input type="text" class="form-control" id="subjectScores-check" name="subjectScores-check" required disabled>
             </td>
           </tr>
           <tr>
             <td>Khu vực ưu tiên</td>
             <td>
-              <input type="text" class="form-control" id="priorityArea-check" name="priorityArea-check" required>
+              <input type="text" class="form-control" id="priorityArea-check" name="priorityArea-check" required disabled>
             </td>
           </tr>
           <tr>
             <td>Đối tượng ưu tiên</td>
             <td>
-              <input type="text" class="form-control" id="priorityGroup-check" name="priorityGroup-check" required>
+              <input type="text" class="form-control" id="priorityGroup-check" name="priorityGroup-check" required disabled>
             </td>
           </tr>
           <tr>
             <td>Địa chỉ nhà</td>
             <td>
-              <input type="text" class="form-control" id="homeAddress-check" name="homeAddress-check" required>
+              <input type="text" class="form-control" id="homeAddress-check" name="homeAddress-check" required disabled>
             </td>
           </tr>
           <tr>
             <td>Gmail</td>
             <td>
-              <input type="email" class="form-control" id="email-check" name="email-check" required autocomplete="email">
+              <input type="email" class="form-control" id="email-check" name="email-check" required autocomplete="email" disabled>
             </td>
           </tr>
           <tr>
             <td>Số điện thoại</td>
             <td>
-              <input type="text" class="form-control" id="phoneNumber-check" name="phoneNumber-check" required>
+              <input type="text" class="form-control" id="phoneNumber-check" name="phoneNumber-check" required disabled>
             </td>
           </tr>
           <tr>
             <td>Kết Quả Tuyển Sinh</td>
             <td>
-              <input type="text" class="form-control" id="result" name="result" required>
+              <input type="text" class="form-control" id="result" name="result" required disabled>
             </td>
           </tr>
           <tr>
             <td colspan="2" class="text-center cards">
               <div class="container">
-                <button id="submitCheckForm" type="submit" class="btn card btn-gradient btn-primary btn-type-3">Submit</button>
                 <button type="close" class="btn card btn-gradient btn-primary btn-type-4 close"
                   id="closeCheckForm">Close</button>
               </div>
