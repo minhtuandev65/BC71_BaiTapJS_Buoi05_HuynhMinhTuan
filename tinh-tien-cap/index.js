@@ -1,33 +1,63 @@
-function tinhTienThue() {
-    var totalYearValue = parseInt(document.getElementById('totalYearInput').value.trim());
-    var nguoiPhuThuocValue = parseInt(document.getElementById('nguoiPhuThuocInput').value.trim());
-    var totalTienThueInput = document.getElementById('totalTienThue');
-    var rate = null;
-    var totalThuNhapChiuThue = totalYearValue - 4000000 - (nguoiPhuThuocValue * 1600000);
+document.addEventListener("DOMContentLoaded", function() {
+    var customerIdInput = document.getElementById("customerId");
+    var customerTypeSelect = document.getElementById("customerType");
+    var numberConnectionInput = document.getElementById("numberConnection");
+    var premiumChannelInput = document.getElementById("premiumChannel");
+    var submitButton = document.getElementById("submit");
 
-    if(totalThuNhapChiuThue <= 60000000){
-        rate = 0.05;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
-    }else if (totalThuNhapChiuThue > 60000000 && totalThuNhapChiuThue <= 120000000){
-        rate = 0.1;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
-    }else if (totalThuNhapChiuThue > 120000000 && totalThuNhapChiuThue <= 210000000){
-        rate = 0.15;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
+    // Nhà Dân
+    // Input: customerIdInput, customerTypeSelect, premiumChannelInput
+    // Process: baseCost: 4.5 + 20.5 => bao gồm phí xử lý hóa đơn và dịch vụ cơ bản,  premiumCost = premiumChannel * 7.5 => kênh cao cấp mỗi kênh = 7.5$, return baseCost + premiumCost => trả về tổng chi phí
+    // Output: return baseCost + premiumCost => trả về tổng chi phí
+
+    // Doanh Nghiệp
+    // Input: customerIdInput, customerTypeSelect, numberConnectionInput, premiumChannelInput
+    // Process: baseCost = 15 + 75 bao gồm phí xử lý hóa đơn và dịch vụ cơ bản, 75$ cho 10 đầu nối đầu và thêm 5$ cho mỗi đầu nối tiếp theo của phí dịch vụ cơ bản; premiumCost = premiumChannel * 50 => kênh cao cấp mỗi 50$ cho một kênh
+    // Output: return baseCost + connectionCost + premiumCost => tổng chi phí
+    
+    // Cập nhật trạng thái của ô nhập số kết nối khi thay đổi loại khách hàng
+    customerTypeSelect.addEventListener("change", function() {
+        updateNumberConnectionInputState();
+    });
+
+    // Cập nhật trạng thái của ô nhập số kết nối khi trang tải
+    updateNumberConnectionInputState();
+
+    // Xử lý khi nhấn nút submit
+    submitButton.addEventListener("click", function() {
+        var customerIdValue = customerIdInput.value.trim();
+        var customerTypeValue = customerTypeSelect.value.trim();
+        var numberConnectionValue = parseInt(numberConnectionInput.value.trim(), 10) || 0;
+        var premiumChannelValue = parseInt(premiumChannelInput.value.trim(), 10) || 0;
+
+        var totalCost = calculateTotalCost(customerTypeValue, numberConnectionValue, premiumChannelValue);
+        alert("Mã khách hàng: " + customerIdValue + "\n" +
+              "Loại khách hàng: " + (customerTypeValue === "nhaDan" ? "Nhà Dân" : "Doanh Nghiệp") + "\n" +
+              "Tổng chi phí: $" + totalCost.toFixed(2));
+    });
+
+    function updateNumberConnectionInputState() {
+        if (customerTypeSelect.value === "doanhNghiep") {
+            numberConnectionInput.disabled = false;
+        } else {
+            numberConnectionInput.disabled = true;
+            numberConnectionInput.value = ""; // Xóa giá trị khi ẩn
+        }
     }
-    else if (totalThuNhapChiuThue > 210000000 && totalThuNhapChiuThue <= 384000000){
-        rate = 0.20;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
+
+    function calculateTotalCost(customerType, numberConnection, premiumChannel) {
+        var baseCost, connectionCost, premiumCost;
+
+        if (customerType === "nhaDan") {
+            baseCost = 4.5 + 20.5;
+            premiumCost = premiumChannel * 7.5;
+            return baseCost + premiumCost;
+        } else if (customerType === "doanhNghiep") {
+            baseCost = 15 + 75;
+            connectionCost = (numberConnection > 10) ? (numberConnection - 10) * 5 : 0;
+            premiumCost = premiumChannel * 50;
+            return baseCost + connectionCost + premiumCost;
+        }
+        return 0;
     }
-    else if (totalThuNhapChiuThue > 384000000 && totalThuNhapChiuThue <= 624000000){
-        rate = 0.25;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
-    }else if (totalThuNhapChiuThue > 624000000 && totalThuNhapChiuThue <= 960000000){
-        rate = 0.30;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
-    }else{
-        rate = 0.35;
-        totalTienThueInput.value = totalThuNhapChiuThue * rate;
-    }
-}
-document.getElementById('submit').addEventListener("click", tinhTienThue);
+});

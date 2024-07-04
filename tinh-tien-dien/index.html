@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <!-- 
+            Viết Chương trình nhập vào thông tin tiêu thụ điện (Tên, số Kw)
+
+            Tính và xuất tiền trả theo quy tắc:
+            - 50Kw đầu: 500Vnđ/ 1Kw
+            - 50Kw kế: 650Vnđ / 1Kw
+            - 100Kw kế: 850Vnđ / 1Kw
+            - 150Kw kế: 1100Vnđ / 1Kw
+            - > 150Kw: 1300Vnđ / 1Kw
+
+            Input: Nhập Họ và tên, số Kw điện đã sử dụng
+            Process: Sử dụng lệnh if else thực hiện phép tính: số Kw * rate
+            Ouput: In ra kết quả tổng tiền phải trả của user
+
+        -->
+
+        <label for="electricityConsumption">Nhập số điện đã tiêu thụ<span id="electricityConsumption-tb">*</span></label>
+        <input type="text" id="electricityConsumption"><br><br>
+        <label for="total-display">Tổng tiền điện:</label>
+        <input type="text" id="total">
+        <button class="btn btn-gradient" id="submit">Submit</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
